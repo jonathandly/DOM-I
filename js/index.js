@@ -64,13 +64,38 @@ support.style.color = 'green';
 let nav = document.querySelector('nav');
 nav.prepend(home);
 nav.appendChild(support);
-
+home.href = '#';
+support.href = '#';
+nav.onmouseover = anchorHover;
+nav.onmouseout = anchorNoHover;
+function anchorHover() {
+  nav.setAttribute('style', 'background-color: lightgray;');
+}
+function anchorNoHover() {
+  nav.setAttribute('style', 'color: green;');
+}
 
 let ctaH1 = document.querySelector('h1');
-ctaH1.textContent = siteContent['cta']['h1'];
+// ctaH1.textContent = siteContent['cta']['h1'];
+ctaH1.innerHTML = 'Dom <br> Is <br> Awesome';
 
 let btn = document.querySelector('button');
 btn.textContent = siteContent['cta']['button'];
+btn.setAttribute('style', 'border-radius: 10px; border-color: blue;');
+btn.onmouseover = buttonHover; 
+btn.onmouseout = buttonNoHover;
+function buttonHover() {
+  btn.setAttribute('style', 'border-radius: 10px; color: darkblue; background: white; border-width: 2px; border-color: black; box-shadow: 2px 2px 2px green;');
+  btn.textContent = 'detratS teG';
+}
+function buttonNoHover() {
+  btn.setAttribute('style', 'border-radius: 10px; border-width: 2px; border-color: darkblue;');
+  btn.textContent = 'Get Started';
+}
+
+let mainBorder = document.querySelector('.main-content');
+mainBorder.setAttribute('style', 'border-top: 1px dashed orange; border-bottom: 1px dashed orange');
+
 
 let h4 = document.getElementsByTagName('h4');
 h4[0].textContent = siteContent['main-content']['features-h4'];
@@ -89,7 +114,8 @@ para[1].textContent = siteContent['main-content']['about-content'];
 para[2].textContent = siteContent['main-content']['services-content'];
 para[3].textContent = siteContent['main-content']['product-content'];
 para[4].textContent = siteContent['main-content']['vision-content'];
-para[5].textContent = siteContent['contact']['address'];
+// para[5].textContent = siteContent['contact']['address'];
+para[5].innerHTML = '123 Way 456 Street <br> Somewhere, USA';
 para[6].textContent = siteContent['contact']['phone'];
 para[7].textContent = siteContent['contact']['email'];
 para[8].textContent = siteContent['footer']['copyright'];
