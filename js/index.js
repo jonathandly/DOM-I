@@ -43,20 +43,42 @@ logo.setAttribute('src', siteContent["nav"]["img-src"]);
 
 let anchor = document.getElementsByTagName('a');
 anchor[0].textContent = siteContent['nav']['nav-item-1'];
-anchor[0].style.color = 'green';
 anchor[1].textContent = siteContent['nav']['nav-item-2'];
-anchor[1].style.color = 'green';
 anchor[2].textContent = siteContent['nav']['nav-item-3'];
-anchor[2].style.color = 'green';
 anchor[3].textContent = siteContent['nav']['nav-item-4'];
-anchor[3].style.color = 'green';
 anchor[4].textContent = siteContent['nav']['nav-item-5'];
-anchor[4].style.color = 'green';
 anchor[5].textContent = siteContent['nav']['nav-item-6'];
-anchor[5].style.color = 'green';
+for(let i = 0; i < anchor.length; i++) {
+  anchor[i].style.color = 'green';
+}
 
 let home = document.createElement('a');
 let support = document.createElement('a');
+let styleBtn = document.createElement('button');
+styleBtn.textContent = 'Change Style';
+styleBtn.setAttribute('style', 'border-radius: 10px; border-color: green; color: white; background-color: lightgreen; width: 100px; height: 25px;');
+styleBtn.addEventListener('click', e => {
+  for(let i = 0; i < anchor.length; i++) {
+    anchor[i].style.color = 'orange';
+  }
+  home.style.color = 'orange';
+  support.style.color = 'orange';
+  styleBtn.setAttribute('style', 'border-radius: 10px; border-color: chartreuse; color: white; background-color: green; width: 100px; height: 25px;');
+  mainBorder.setAttribute('style', 'border-top: 2px solid chartreuse; border-bottom: 2px solid chartreuse;');
+  btn.setAttribute('style', 'border-radius: 10px; border-color: chartreuse; color: chartreuse; background-color: black;');
+  
+});
+styleBtn.onmouseover = styleBtnHover;
+styleBtn.onmouseout = styleBtnNoHover;
+function styleBtnHover() {
+  styleBtn.textContent = 'egnahC elytS';
+  styleBtn.setAttribute('style', 'border-radius: 10px; border-color: red; width: 100px; height: 25px; box-shadow: 2px 2px 2px lightgreen; color: red;');
+}
+function styleBtnNoHover() {
+  styleBtn.textContent = 'Change Style';
+  styleBtn.setAttribute('style', 'border-radius: 10px; border-color: green; color: white; background-color: lightgreen; width: 100px; height: 25px;');
+}
+
 home.textContent = 'Home';
 support.textContent = 'Support';
 home.style.color = 'green';
@@ -64,6 +86,8 @@ support.style.color = 'green';
 let nav = document.querySelector('nav');
 nav.prepend(home);
 nav.appendChild(support);
+nav.appendChild(styleBtn);
+
 home.href = '#';
 support.href = '#';
 nav.onmouseover = anchorHover;
@@ -76,17 +100,24 @@ function anchorNoHover() {
 }
 
 let ctaH1 = document.querySelector('h1');
-// ctaH1.textContent = siteContent['cta']['h1'];
-ctaH1.innerHTML = 'Dom <br> Is <br> Awesome';
+const h1Content = siteContent.cta.h1.split(' ');
+const h1LineTextNodes = [];
+h1Content.forEach(e => h1LineTextNodes.push(document.createTextNode(e)));
+for(let i = 0; i < h1LineTextNodes.length; i++) {
+  ctaH1.appendChild(h1LineTextNodes[i]);
+  if(i < h1LineTextNodes.length - 1) {
+    ctaH1.appendChild(document.createElement('br'));
+  }
+}
 
-let btn = document.querySelector('button');
+let btn = document.querySelector('.cta button');
 btn.textContent = siteContent['cta']['button'];
 btn.setAttribute('style', 'border-radius: 10px; border-color: blue;');
 btn.onmouseover = buttonHover; 
 btn.onmouseout = buttonNoHover;
 function buttonHover() {
   btn.setAttribute('style', 'border-radius: 10px; color: darkblue; background: white; border-width: 2px; border-color: black; box-shadow: 2px 2px 2px green;');
-  btn.textContent = 'detratS teG';
+  btn.textContent = 'teG detratS';
 }
 function buttonNoHover() {
   btn.setAttribute('style', 'border-radius: 10px; border-width: 2px; border-color: darkblue;');
